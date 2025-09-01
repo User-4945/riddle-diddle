@@ -1,52 +1,85 @@
 body {
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  background: linear-gradient(135deg, #ffcc70, #c850c0);
+  font-family: 'Inter', sans-serif;
+  background: #f7f8fc;
   color: #333;
-  padding: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  padding: 30px 20px 10px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 h1 {
   font-size: 2.5em;
-  text-align: center;
+  margin-bottom: 10px;
 }
 
-nav a {
+.nav-buttons {
+  margin-top: 20px;
+}
+
+.nav-buttons a {
+  display: inline-block;
   margin: 0 10px;
   text-decoration: none;
-  background: #c850c0;
+  background: #4f46e5;
   color: white;
-  padding: 5px 10px;
-  border-radius: 10px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.nav-buttons a:hover {
+  background: #4338ca;
 }
 
 .riddle-card {
-  background: white;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  background: #fff;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   max-width: 600px;
-  margin: 30px auto;
 }
 
 input, button {
-  display: block;
   width: 100%;
-  margin-top: 10px;
-  padding: 10px;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
   font-size: 1em;
-  border-radius: 10px;
-  border: 2px solid #c850c0;
+  transition: all 0.2s ease-in-out;
 }
 
 button {
-  background-color: #c850c0;
+  background-color: #4f46e5;
   color: white;
+  border: none;
   cursor: pointer;
 }
 
+button:hover {
+  background-color: #4338ca;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
 #show-answer-btn {
-  background-color: #ffd700;
+  background-color: #facc15;
   color: #333;
+}
+
+#feedback {
+  margin-top: 10px;
+  font-weight: 600;
 }
 
 @keyframes shake {
@@ -69,4 +102,39 @@ button {
 #badge-shelf span {
   font-size: 2em;
   margin: 0 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 600px) {
+  .riddle-card {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .nav-buttons a {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+  }
+}.archive-controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.archive-controls input,
+.archive-controls select {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  width: 200px;
 }

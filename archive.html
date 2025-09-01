@@ -5,19 +5,22 @@
   <title>Riddle Archive</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
     <h1>📚 Riddle Archive</h1>
-    <nav>
+    <div class="nav-buttons">
       <a href="index.html">🏠 Home</a>
       <a href="create.html" target="_blank">✏️ Create</a>
-    </nav>
-    <input type="text" id="search" placeholder="Search riddles..." />
-    <select id="sort">
-      <option value="newest">Newest First</option>
-      <option value="oldest">Oldest First</option>
-    </select>
+    </div>
+    <div class="archive-controls">
+      <input type="text" id="search" placeholder="Search riddles..." />
+      <select id="sort">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+    </div>
   </header>
 
   <main>
@@ -46,12 +49,12 @@
 
       filtered.forEach((r, i) => {
         const li = document.createElement("li");
+        li.className = "riddle-card";
         li.innerHTML = `
           <strong>${r.date}</strong><br>
-          ${r.question}<br>
+          <p>${r.question}</p>
           <button onclick="toggleAnswer('a${i}')">Show Answer</button>
           <span id="a${i}" style="display:none;">${r.answer}</span>
-          <hr>
         `;
         list.appendChild(li);
       });
