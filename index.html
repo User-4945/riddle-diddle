@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Riddle Diddle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🧠 Riddle Diddle</h1>
+    <p>Your weekly dose of curiosity and cleverness</p>
+    <nav>
+      <a href="archive.html" target="_blank">📚 Archive</a>
+      <a href="create.html" target="_blank">✏️ Create</a>
+      <a href="#" onclick="showLeaderboard(); return false;">🏆 Leaderboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="riddle-card">
+      <h2>Weekly Riddle</h2>
+      <div class="riddle-with-icons">
+        <div class="riddle-icons">
+          <span class="icon">📚</span>
+          <span class="icon">🔍</span>
+          <span class="icon">✏️</span>
+        </div>
+        <p id="riddle-text">
+          I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?
+        </p>
+      </div>
+      <input type="text" id="answer" placeholder="Type your answer..." />
+      <button onclick="checkAnswer()">Submit</button>
+      <button id="show-answer-btn" onclick="showAnswer()" style="display:none;">Show Answer</button>
+      <p id="feedback"></p>
+    </section>
+
+    <section id="leaderboard" style="display:none;">
+      <h2>🏆 Top Solvers</h2>
+      <ul id="leaderboard-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Created by FUN Studios • Powered by curiosity</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

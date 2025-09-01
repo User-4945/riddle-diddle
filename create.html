@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create a Riddle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>✏️ Submit a Riddle</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="archive.html" target="_blank">📚 Archive</a>
+    </nav>
+  </header>
+
+  <main>
+    <form action="https://formspree.io/f/xldwnajd" method="POST">
+      <label for="riddle">Riddle:</label><br>
+      <textarea id="riddle" name="riddle" rows="4" required></textarea><br><br>
+
+      <label for="answer">Answer:</label><br>
+      <input type="text" id="answer" name="answer" required /><br><br>
+
+      <input type="hidden" name="_subject" value="New Riddle Submission from Riddle Diddle" />
+      <input type="hidden" name="_captcha" value="false" />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <p id="submitFeedback">Your riddle will be emailed to confirmation once submitted!</p>
+  </main>
+
+  <footer>
+    <p>Created by FUN Studios • Powered by curiosity</p>
+  </footer>
+</body>
+</html>

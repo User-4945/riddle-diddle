@@ -1,0 +1,147 @@
+/* 🌈 Base Styles */
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(135deg, #ffcc70, #c850c0);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 🧠 Header */
+header {
+  text-align: center;
+  margin-top: 30px;
+  z-index: 1;
+  position: relative;
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 0;
+}
+
+/* 🧭 Navigation */
+nav {
+  margin-top: 10px;
+}
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  background: #c850c0;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+nav a:hover {
+  background: #a030a0;
+}
+
+/* 📦 Main Container */
+main {
+  margin: 40px;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  max-width: 600px;
+  width: 90%;
+  z-index: 1;
+  position: relative;
+}
+
+/* 🧩 Riddle Card */
+.riddle-card h2,
+#leaderboard h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.riddle-with-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.riddle-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.icon {
+  font-size: 2em;
+  animation: float 6s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+/* ✏️ Form Inputs */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 2px solid #c850c0;
+  margin-bottom: 10px;
+}
+
+/* 🎯 Buttons */
+button,
+form button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #c850c0;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover,
+form button:hover {
+  background-color: #a030a0;
+}
+
+/* 💡 Show Answer Button */
+#show-answer-btn {
+  background-color: #ffd700;
+  color: #333;
+}
+#show-answer-btn:hover {
+  background-color: #ffcc00;
+}
+
+/* 🏆 Leaderboard */
+#leaderboard-list li {
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  line-height: 1.4em;
+}
+
+/* 📚 Archive List */
+.archive-list li {
+  margin-bottom: 20px;
+}
+
+/* 🧠 Footer */
+footer {
+  margin-top: auto;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  z-index: 1;
+  position: relative;
+}
+
+/* 🎈 Floating Animation */
+@keyframes float {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-10px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
