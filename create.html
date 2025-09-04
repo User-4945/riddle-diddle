@@ -8,22 +8,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <!-- 🌗 Theme toggle button -->
+  <button id="theme-toggle">🌙</button>
+
   <header>
     <h1>✏️ Create a Riddle</h1>
     <div class="nav-buttons">
       <a href="index.html">🏠 Home</a>
       <a href="archive.html" target="_blank">📚 Archive</a>
     </div>
-    <button id="theme-toggle">🌙</button>
   </header>
 
   <main>
     <section class="riddle-card">
       <h2>Submit Your Riddle</h2>
-      <input type="text" id="new-question" placeholder="Enter your riddle question..." />
-      <input type="text" id="new-answer" placeholder="Enter the answer..." />
-      <button onclick="submitRiddle()">Submit</button>
-      <p id="submit-feedback"></p>
+      <form action="https://formspree.io/f/xldwnajd" method="POST">
+        <input type="text" name="question" placeholder="Enter your riddle question..." required />
+        <input type="text" name="answer" placeholder="Enter the answer..." required />
+        <input type="email" name="_replyto" placeholder="Your email (optional)" />
+
+        <!-- ✅ Google reCAPTCHA widget -->
+        <div class="g-recaptcha" data-sitekey="6LdfMr4rAAAAABZE83YxUBApwiD_jQuzjZU36e4C"></div>
+
+        <button type="submit">Submit</button>
+      </form>
     </section>
   </main>
 
@@ -31,29 +39,11 @@
     <p>FUN Studios • Share your cleverness</p>
   </footer>
 
+  <!-- ✅ Load reCAPTCHA script -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
   <script>
-    function submitRiddle() {
-      const question = document.getElementById("new-question").value.trim();
-      const answer = document.getElementById("new-answer").value.trim();
-      const feedback = document.getElementById("submit-feedback");
-
-      if (!question || !answer) {
-        feedback.textContent = "❌ Please fill out both fields.";
-        feedback.style.color = "red";
-        return;
-      }
-
-      const submitted = JSON.parse(localStorage.getItem("userRiddles")) || [];
-      submitted.push({ question, answer });
-      localStorage.setItem("userRiddles", JSON.stringify(submitted));
-
-      feedback.textContent = "✅ Riddle submitted!";
-      feedback.style.color = "green";
-      document.getElementById("new-question").value = "";
-      document.getElementById("new-answer").value = "";
-    }
-
-    // Theme toggle
+    // 🌗 Theme toggle logic
     const toggleBtn = document.getElementById("theme-toggle");
     const body = document.body;
 
