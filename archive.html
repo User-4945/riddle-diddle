@@ -14,6 +14,7 @@
       <a href="index.html">🏠 Home</a>
       <a href="create.html" target="_blank">✏️ Create</a>
     </div>
+    <button id="theme-toggle">🌙</button>
     <div class="archive-controls">
       <input type="text" id="search" placeholder="Search riddles..." />
       <select id="sort">
@@ -39,6 +40,7 @@
 
     function renderArchive() {
       list.innerHTML = "";
+
       let filtered = archive.filter(r =>
         r.question.toLowerCase().includes(searchInput.value.toLowerCase())
       );
@@ -68,6 +70,31 @@
     searchInput.addEventListener("input", renderArchive);
     sortSelect.addEventListener("change", renderArchive);
     renderArchive();
+
+    // Theme toggle
+    const toggleBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    function applyTheme(theme) {
+      body.classList.toggle("dark", theme === "dark");
+      toggleBtn.textContent = theme === "dark" ? "🌞" : "🌙";
+      localStorage.setItem("theme", theme);
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      const newTheme = body.classList.contains("dark") ? "light" : "dark";
+      applyTheme(newTheme);
+    });
+
+    window.addEventListener("load", () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        applyTheme(savedTheme);
+      } else {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        applyTheme(prefersDark ? "dark" : "light");
+      }
+    });
   </script>
 </body>
 </html>

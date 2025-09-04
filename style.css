@@ -1,16 +1,45 @@
+/* Smooth transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme variables */
+:root {
+  --bg: #f7f8fc;
+  --text: #333;
+  --card-bg: #fff;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --button-text: #fff;
+  --highlight: #facc15;
+}
+
+body.dark {
+  --bg: #1e1e2f;
+  --text: #f0f0f0;
+  --card-bg: #2a2a3d;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --button-text: #fff;
+  --highlight: #fde047;
+}
+
+/* Base layout */
 body {
   font-family: 'Inter', sans-serif;
-  background: #f7f8fc;
-  color: #333;
+  background: var(--bg);
+  color: var(--text);
   margin: 0;
   padding: 0;
 }
 
+/* Header and navigation */
 header {
   text-align: center;
   padding: 30px 20px 10px;
-  background: #fff;
+  background: var(--card-bg);
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: relative;
 }
 
 h1 {
@@ -26,8 +55,8 @@ h1 {
   display: inline-block;
   margin: 0 10px;
   text-decoration: none;
-  background: #4f46e5;
-  color: white;
+  background: var(--accent);
+  color: var(--button-text);
   padding: 10px 16px;
   border-radius: 12px;
   font-weight: 600;
@@ -35,11 +64,30 @@ h1 {
 }
 
 .nav-buttons a:hover {
-  background: #4338ca;
+  background: var(--accent-hover);
 }
 
+/* Theme toggle button — top-left corner */
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--text);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover {
+  transform: rotate(20deg);
+}
+
+/* Riddle card layout */
 .riddle-card {
-  background: #fff;
+  background: var(--card-bg);
   margin: 40px auto;
   padding: 30px;
   border-radius: 16px;
@@ -47,25 +95,28 @@ h1 {
   max-width: 600px;
 }
 
-input, button {
+/* Inputs and buttons */
+input, button, select {
   width: 100%;
   padding: 12px;
   margin-top: 12px;
   border-radius: 12px;
   border: 1px solid #ccc;
   font-size: 1em;
+  background: var(--card-bg);
+  color: var(--text);
   transition: all 0.2s ease-in-out;
 }
 
 button {
-  background-color: #4f46e5;
-  color: white;
+  background-color: var(--accent);
+  color: var(--button-text);
   border: none;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #4338ca;
+  background-color: var(--accent-hover);
 }
 
 button:active {
@@ -73,15 +124,18 @@ button:active {
 }
 
 #show-answer-btn {
-  background-color: #facc15;
-  color: #333;
+  background-color: var(--highlight);
+  color: var(--text);
 }
 
-#feedback {
+/* Feedback text */
+#feedback,
+#submit-feedback {
   margin-top: 10px;
   font-weight: 600;
 }
 
+/* Shake animation */
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -94,6 +148,7 @@ button:active {
   animation: shake 0.3s;
 }
 
+/* Badge shelf */
 #badge-shelf {
   text-align: center;
   margin-top: 40px;
@@ -104,25 +159,16 @@ button:active {
   margin: 0 10px;
 }
 
+/* Footer */
 footer {
   text-align: center;
   padding: 20px;
-  background: #fff;
+  background: var(--card-bg);
   box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
 }
 
-@media (max-width: 600px) {
-  .riddle-card {
-    margin: 20px;
-    padding: 20px;
-  }
-
-  .nav-buttons a {
-    display: block;
-    margin: 10px auto;
-    width: 80%;
-  }
-}.archive-controls {
+/* Archive controls */
+.archive-controls {
   margin-top: 20px;
   display: flex;
   justify-content: center;
@@ -137,4 +183,44 @@ footer {
   border: 1px solid #ccc;
   font-size: 1em;
   width: 200px;
+}
+
+/* Archive list */
+#archive-list {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+  margin: 40px auto;
+}
+
+.riddle-card li {
+  background: var(--card-bg);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  .riddle-card {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .nav-buttons a {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+  }
+
+  .archive-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .archive-controls input,
+  .archive-controls select {
+    width: 90%;
+  }
 }

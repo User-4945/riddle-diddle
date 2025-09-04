@@ -4,35 +4,79 @@
   <meta charset="UTF-8" />
   <title>Create a Riddle</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
-    <h1>✏️ Submit a Riddle</h1>
-    <nav>
+    <h1>✏️ Create a Riddle</h1>
+    <div class="nav-buttons">
       <a href="index.html">🏠 Home</a>
       <a href="archive.html" target="_blank">📚 Archive</a>
-    </nav>
+    </div>
+    <button id="theme-toggle">🌙</button>
   </header>
 
   <main>
-    <form action="https://formspree.io/f/xldwnajd" method="POST">
-      <label for="riddle">Riddle:</label><br>
-      <textarea id="riddle" name="riddle" rows="4" required></textarea><br><br>
-
-      <label for="answer">Answer:</label><br>
-      <input type="text" id="answer" name="answer" required /><br><br>
-
-      <input type="hidden" name="_subject" value="New Riddle Submission from Riddle Diddle" />
-      <input type="hidden" name="_captcha" value="false" />
-
-      <button type="submit">Submit</button>
-    </form>
-
-    <p id="submitFeedback">Your riddle will be emailed to confirmation once submitted!</p>
+    <section class="riddle-card">
+      <h2>Submit Your Riddle</h2>
+      <input type="text" id="new-question" placeholder="Enter your riddle question..." />
+      <input type="text" id="new-answer" placeholder="Enter the answer..." />
+      <button onclick="submitRiddle()">Submit</button>
+      <p id="submit-feedback"></p>
+    </section>
   </main>
 
   <footer>
-    <p>Created by FUN Studios • Powered by curiosity</p>
+    <p>FUN Studios • Share your cleverness</p>
   </footer>
+
+  <script>
+    function submitRiddle() {
+      const question = document.getElementById("new-question").value.trim();
+      const answer = document.getElementById("new-answer").value.trim();
+      const feedback = document.getElementById("submit-feedback");
+
+      if (!question || !answer) {
+        feedback.textContent = "❌ Please fill out both fields.";
+        feedback.style.color = "red";
+        return;
+      }
+
+      const submitted = JSON.parse(localStorage.getItem("userRiddles")) || [];
+      submitted.push({ question, answer });
+      localStorage.setItem("userRiddles", JSON.stringify(submitted));
+
+      feedback.textContent = "✅ Riddle submitted!";
+      feedback.style.color = "green";
+      document.getElementById("new-question").value = "";
+      document.getElementById("new-answer").value = "";
+    }
+
+    // Theme toggle
+    const toggleBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    function applyTheme(theme) {
+      body.classList.toggle("dark", theme === "dark");
+      toggleBtn.textContent = theme === "dark" ? "🌞" : "🌙";
+      localStorage.setItem("theme", theme);
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      const newTheme = body.classList.contains("dark") ? "light" : "dark";
+      applyTheme(newTheme);
+    });
+
+    window.addEventListener("load", () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        applyTheme(savedTheme);
+      } else {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        applyTheme(prefersDark ? "dark" : "light");
+      }
+    });
+  </script>
 </body>
 </html>
